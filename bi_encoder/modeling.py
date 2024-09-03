@@ -133,6 +133,7 @@ class BiEncoderModel(nn.Module):
         return q_reps.contiguous()
 
     def compute_similarity(self, q_reps, p_reps):
+        # 计算(余弦)相似度
         if len(p_reps.size()) == 2:
             return torch.matmul(q_reps, p_reps.transpose(0, 1))
         return torch.matmul(q_reps, p_reps.transpose(-2, -1))
