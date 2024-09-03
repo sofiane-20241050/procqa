@@ -98,10 +98,12 @@ class BiEncoderModel(nn.Module):
             self.world_size = dist.get_world_size()
 
     def sentence_embedding(self, hidden_state, mask):
+        # 平均池化
         if self.sentence_pooling_method == 'mean':
             s = torch.sum(hidden_state * mask.unsqueeze(-1).float(), dim=1)
             d = mask.sum(axis=1, keepdim=True).float()
             return s / d
+        # CLS
         elif self.sentence_pooling_method == 'cls':
             return hidden_state[:, 0]
 
