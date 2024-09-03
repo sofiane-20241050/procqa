@@ -31,6 +31,7 @@ class DensePooler(nn.Module):
         super(DensePooler, self).__init__()
         self.linear_q = nn.Linear(input_dim, output_dim)
         if tied:
+            # 该参数指的应该是p和q是否使用相同的稠密层
             self.linear_p = self.linear_q
         else:
             self.linear_p = nn.Linear(input_dim, output_dim)
