@@ -54,6 +54,7 @@ class DensePooler(nn.Module):
             json.dump(self._config, f)
 
     def forward(self, q: Tensor = None, p: Tensor = None, **kwargs):
+        # q: query, p: passage
         if q is not None:
             return self.linear_q(q)
         elif p is not None:
