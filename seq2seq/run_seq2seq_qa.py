@@ -523,6 +523,7 @@ def main():
     )
 
     # Metric
+    # 测评指标为rouge
     metric = evaluate.load("rouge")
 
     def postprocess_text(preds, labels):
